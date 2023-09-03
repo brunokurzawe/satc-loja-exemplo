@@ -4,15 +4,16 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@DiscriminatorValue("produto")
 public class Produto extends ItemVendavel {
 
-    @Column(name = "nome", length = 100, nullable = false)
+    @Column(name = "nome")
     private String nome;
-    @Column(name = "preco_compra", nullable = false)
+    @Column(name = "preco_compra")
     private Double precoCompra;
-    @Column(name = "dt_validade", nullable = false)
+    @Column(name = "dt_validade")
     private LocalDate dataValidade;
-    @Column(name = "dt_prazo", nullable = false)
+    @Column(name = "dt_prazo")
     private LocalDate dataPrazo;
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
