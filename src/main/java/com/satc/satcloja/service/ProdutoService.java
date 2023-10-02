@@ -16,7 +16,8 @@ public class ProdutoService {
     private ProdutoRepository repository;
 
     public List<Produto> findProdutosAlugados() {
-        List<Produto> alugados = repository.findAll(QProduto.produto.status.in(Status.ALUGADO, Status.DISPONIVEL));
+        List<Produto> alugados = repository.
+                findAll(QProduto.produto.status.in(Status.ALUGADO, Status.DISPONIVEL));
         return alugados;
     }
 }

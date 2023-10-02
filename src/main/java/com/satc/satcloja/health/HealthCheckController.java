@@ -5,6 +5,7 @@ import com.satc.satcloja.repository.ClienteRepository;
 import com.satc.satcloja.repository.ProdutoRepository;
 import com.satc.satcloja.repository.ServicoRepository;
 import com.satc.satcloja.repository.VendaRepository;
+import com.satc.satcloja.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,9 @@ public class HealthCheckController {
 
     @Autowired
     public ProdutoRepository produtoRepository;
+
+    @Autowired
+    public ProdutoService produtoService;
 
     @Autowired
     public ClienteRepository clienteRepository;
@@ -113,5 +117,57 @@ public class HealthCheckController {
         return "Comando Executado!  " + produto.getId();
     }
 
+
+    @GetMapping("/teste-produto")
+    public String healthCheck3() {
+
+        Produto produto = new Produto();
+        produto.setDescricao("Intel Pentium I5");
+        produto.setNome("PC Intel");
+        produto.setValorUnitario(1000.00);
+        produto.setDataPrazo(LocalDate.now());
+        produto.setDataValidade(LocalDate.now());
+        produto.setPrecoCompra(850.00);
+        produto.setStatus(Status.DISPONIVEL);
+        produto.setEstocavel(Boolean.TRUE);
+
+        produto = produtoRepository.save(produto);
+
+        Produto produto2 = new Produto();
+        produto2.setDescricao("Intel Pentium I5");
+        produto2.setNome("PC Intel");
+        produto2.setValorUnitario(1000.00);
+        produto2.setDataPrazo(LocalDate.now());
+        produto2.setDataValidade(LocalDate.now());
+        produto2.setPrecoCompra(850.00);
+        produto2.setStatus(Status.DISPONIVEL);
+        produto2.setEstocavel(Boolean.TRUE);
+
+        produto2 = produtoRepository.save(produto2);
+
+        Produto produto3 = new Produto();
+        produto3.setDescricao("Intel Pentium I5");
+        produto3.setNome("PC Intel");
+        produto3.setValorUnitario(1000.00);
+        produto3.setDataPrazo(LocalDate.now());
+        produto3.setDataValidade(LocalDate.now());
+        produto3.setPrecoCompra(850.00);
+        produto3.setStatus(Status.ALUGADO);
+        produto3.setEstocavel(Boolean.TRUE);
+
+        produto3 = produtoRepository.save(produto3);
+
+
+        return "";
+
+    }
+
+    @GetMapping("/teste-produto-alugados")
+    public String healthCheck4() {
+
+        List<Produto> produtosAlugados = produtoService.findProdutosAlugados();
+
+        return produtosAlugados.toString();
+    }
 
 }
