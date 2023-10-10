@@ -162,12 +162,6 @@ public class HealthCheckController {
 
     }
 
-    @GetMapping("/teste-produto-alugados")
-    public String healthCheck4() {
 
-        List<Produto> produtosAlugados = produtoService.findProdutosAlugados();
-
-        return produtosAlugados.toString();
-    }
 
 }
